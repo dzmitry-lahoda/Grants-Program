@@ -1,29 +1,79 @@
-# Name of your Project
+# cw-xcm-executor
 
 > This document will be part of the terms and conditions of your agreement and therefore needs to contain all the required information about the project. Don't remove any of the mandatory parts presented in bold letters or as headlines (except for the title)! Lines starting with a `>` (such as this one) should be removed. Please use markdown instead of HTML (e.g. `![](image.png)` instead of `<img>`). 
 >
 > See the [Grants Program Process](https://github.com/w3f/Grants-Program/#pencil-process) on how to submit a proposal.
-- **Team Name:** Legal name of your team (e.g. Duo)
-- **Payment Address:** BTC, Ethereum (USDT/USDC/DAI) or Polkadot/Kusama (aUSD) payment address. Please also specify the currency. (e.g. 0x8920... (DAI))
-- **[Level](https://github.com/w3f/Grants-Program/tree/master#level_slider-levels):** 1, 2 or 3
+- **Team Name:** lahoda.pro
+- **Payment Address:** TODO! BTC, Ethereum (USDT/USDC/DAI) or Polkadot/Kusama (aUSD) payment address. Please also specify the currency. (e.g. 0x8920... (DAI))
+- **[Level](https://github.com/w3f/Grants-Program/tree/master#level_slider-levels):** 1
 
-> :exclamation: *The combination of your GitHub account submitting the application and the payment address above will be your unique identifier during the program. Please keep them safe.*
 ## Project Overview :page_facing_up:
 
-If this application is in response to an RFP, please indicate this on the first line of this section.
-
-If this is an application for a follow-up grant (the continuation of an earlier, successful W3F grant), please provide name and/or pull request of said grant on the first line of this section.
+This is new application grand to provide Substrate `xcm-executor` pallet compatible pallet as IBC enabled CosmWasm executor contract. 
 
 ### Overview
 
-Please provide the following:
+Project is about porting XCM executor to other Rust WASM contracts ecosysgem in Cosmos eocystem.
 
-- If the name of your project is not descriptive, a tag line (one sentence summary).
-- A brief description of your project.
-- An indication of how your project relates to / integrates into Substrate / Polkadot / Kusama.
-- An indication of why your team is interested in creating this project.
+`cw` stands for CosmWasm and is standard prefix for contracts in Cosmos ecosystem.
+
+`IBC` stands for Inter Blockchain Communication and is standard for trustless chains agnosics ledgers messages exchange. 
+
+`xcm-executor` will be base to execute messages send from Kusama to Cosmos based chains and executor. 
+
+So it will be making XCM message originated on any Dotsama IBC chain to run on any IBC CW Cosmos chain.
+
+We believe that XCM is viable future of cross chain contracts and naturally fits IBC CW event and will allow brinig more utility into both ecosystems.
+
 
 ### Project Details
+
+
+Output of this project would be:
+- Contract running in CW test enviroment executing tests
+- Porting `xcm-executor` pallet tests agains this contract
+- ICS specification of contract
+
+Main entry point of CW contract is `execute` message which dispatches contract exeuction
+```rust
+TODO!: message
+```
+
+Contact will store:
+```
+- XCM message
+- pointer to message which is executed
+```
+
+Contrat will be initilaied (instantiated)
+```
+Owner of contract
+```
+
+Owner will be IBC enabled contact.
+
+Will use
+```
+cw-
+cw-multitet
+```
+
+will depend on
+```
+scale-
+xcm
+```
+
+XCM executor confuration depends on:
+
+T1
+T1 
+
+will be handled as message
+
+transaction palyoad would be expected  to be CW encocde contract address and message
+
+will provide ICS specification of contract
 
 We expect the teams to already have a solid idea about your project's expected final state. Therefore, we ask the teams to submit (where relevant):
 
@@ -32,75 +82,62 @@ We expect the teams to already have a solid idea about your project's expected f
 - An overview of the technology stack to be used
 - Documentation of core components, protocols, architecture, etc. to be deployed
 - PoC/MVP or other relevant prior work or research on the topic
-- What your project is _not_ or will _not_ provide or implement
-  - This is a place for you to manage expectations and to clarify any limitations that might not be obvious
 
 
-Things that shouldn’t be part of the application (see also our [FAQ](../docs/faq.md)):
-- The (future) tokenomics of your project 
-- For non-infrastructure projects—deployment and hosting costs, maintenance or audits
-- Business-oriented activities (marketing, business planning), events or outreach
+Will not provide:
+- IBC integration enpoint. Expected that commercial entity using this conrract will have other contract or Cosmos module invoking XCM contract.
+- CW is planned to be no_std enabled (cw is already, cw-storate-plus) is. So it is not expected that these crates witll be made no_std, so it is viable to do so.
+- `Transact` message payload builder.
+- Audit
 
 ### Ecosystem Fit
 
-Help us locate your project in the Polkadot/Substrate/Kusama landscape and what problems it tries to solve by answering each of these questions:
+Project proves portability and cross chain viability of XCM format. Allows alternative executor on no_std cosmwasm VM running as pallet.
 
-- Where and how does your project fit into the ecosystem?
-- Who is your target audience (parachain/dapp/wallet/UI developers, designers, your own user base, some dapp's userbase, yourself)?
-- What need(s) does your project meet?
-- Are there any other projects similar to yours in the Substrate / Polkadot / Kusama ecosystem?
-  - If so, how is your project different?
-  - If not, are there similar projects in related ecosystems?
+Target adiomce developers build on top or parachins integratin with Cowsmas/Cosmos/IBC system via XCM.
+
+It enableer to allows to transfer tokens, oracle data and govenrnace for and to Dotsama easy way.
+
+There are other projects expandin XCM to Etherem or bridges. So none I am aware of expanidn it to Cosmos.
 
 ## Team :busts_in_silhouette:
 
 ### Team members
 
-- Name of team leader
-- Names of team members
+- Dzmitry Lahoda
+
+Scope is small enought to be handled by one person.
 
 ### Contact
 
-- **Contact Name:** Full name of the contact person in your team
-- **Contact Email:** Contact email (e.g. john@duo.com)
-- **Website:** Your website
-
-### Legal Structure
-
-- **Registered Address:** Address of your registered legal entity, if available. Please keep it in a single line. (e.g. High Street 1, London LK1 234, UK)
-- **Registered Legal Entity:** Name of your registered legal entity, if available. (e.g. Duo Ltd.)
+- **Contact Name:** Dzmitry Lahoda
+- **Contact Email:** dzmitry@lahoda.pro
+- **Website:** lahoda.pro
 
 ### Team's experience
 
-Please describe the team's relevant experience. If your project involves development work, we would appreciate it if you singled out a few interesting projects or contributions made by team members in the past. 
+I am working with Composable Finance for enabling their XCVM message format executed over Cosmwasm and IBC. And at same time I did setu Composable runtimes to handle XCM message.
 
-If anyone on your team has applied for a grant at the Web3 Foundation previously, please list the name of the project and legal entity here.
+Before that I was wring smart contracts for Fluence(they have Aqua language for cross chain messaging) and Solana(contracts).
 
 ### Team Code Repos
 
-- https://github.com/<your_organisation>/<project_1>
+- https://github.com/<your_organisation>/<project_1> <- just me conrib
 - https://github.com/<your_organisation>/<project_2>
-
-Please also provide the GitHub accounts of all team members. If they contain no activity, references to projects hosted elsewhere or live are also fine.
-
-- https://github.com/<team_member_1>
-- https://github.com/<team_member_2>
 
 ### Team LinkedIn Profiles (if available)
 
-- https://www.linkedin.com/<person_1>
-- https://www.linkedin.com/<person_2>
+- https://www.linkedin.com/<person_1> <- dz
 
 
 ## Development Status :open_book:
 
 If you've already started implementing your project or it is part of a larger repository, please provide a link and a description of the code here. In any case, please provide some documentation on the research and other work you have conducted before applying. This could be:
 
-- links to improvement proposals or [RFPs](https://github.com/w3f/Grants-Program/tree/master/rfp-proposal) (requests for proposal),
 - academic publications relevant to the problem,
-- links to your research diary, blog posts, articles, forum discussions or open GitHub issues,
-- references to conversations you might have had related to this project with anyone from the Web3 Foundation,
-- previous interface iterations, such as mock-ups and wireframes.
+- links to your research diary, blog posts, articles, forum discussions or open GitHub issues, 
+- pR to CW std for storage
+- move from CW repo, limk to XCM compile
 
 ## Development Roadmap :nut_and_bolt:
 
@@ -141,19 +178,16 @@ Below we provide an **example roadmap**. In the descriptions, it should be clear
 
 ### Milestone 2 Example — Additional features
 
-- **Estimated Duration:** 1 month
+- **Estimated Duration:** 2 month
 - **FTE:**  1,5
-- **Costs:** 8,000 USD
+- **Costs:** 10,000 USD
 
 ...
 
 
 ## Future Plans
 
-Please include here
-
-- how you intend to use, enhance, promote and support your project in the short term, and
-- the team's long-term plans and intentions in relation to it.
+- apply for grand to IBC/CW enabled Cosmos chain to integrate XCM executor.
 
 ## Referral Program (optional) :moneybag: 
 
@@ -163,7 +197,7 @@ You can find more information about the program [here](../README.md#moneybag-ref
 
 ## Additional Information :heavy_plus_sign:
 
-**How did you hear about the Grants Program?** Web3 Foundation Website / Medium / Twitter / Element / Announcement by another team / personal recommendation / etc.
+**How did you hear about the Grants Program?** Web3 Foundation Website
 
 Here you can also add any additional information that you think is relevant to this application but isn't part of it already, such as:
 
